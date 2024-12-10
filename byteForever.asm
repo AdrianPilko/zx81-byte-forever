@@ -62,9 +62,14 @@ LINE_LENGTH   equ    32
 DF_CC         equ    dfile+1
     
 ;; start point and anything only called once after load
-demo_start            
+demo_start   
+            
    call fillScreenArea
-
+wait_start   
+   ld a, (lastk)
+   inc a
+   jr z, wait_start
+   
 ;; main loop
 main
     ld de, (VSYNCLOOP) 	          
